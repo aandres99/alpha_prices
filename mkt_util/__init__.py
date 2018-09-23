@@ -73,10 +73,14 @@ class Security(object):
         return self.daily_prices
 
 
-def calc_fix_sprd_trade(df, short_hurdle=1.15, short_cover=1.01,
-                        long_hurdle=0.85, long_cover=0.99 ):
-    """
-    Documentation goes here.
+def create_fix_sprd_rule(df: pd.DataFrame, short_hurdle: float = 1.15,
+                         short_cover: float = 1.01,
+                         long_hurdle: float = 0.85,
+                         long_cover: float =0.99 ) -> pd.DataFrame:
+    """ Create the trade rule based on the fixed entry trade rules (hurdles)
+    and exit trade rules (cover). Unlike rolling averages or medians, the rules
+    are tied to a single, fixed reference level, e.g. average spread over the
+    last two years.
     :param df:
     :param short_hurdle:
     :param short_cover:
